@@ -1,4 +1,4 @@
-package com.test.ds;
+package com.dsdemo.ds;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -15,7 +15,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import com.test.ds.MyStack;
+import com.dsdemo.ds.MyStack;
 @DisplayName("Given a stack")
 class MyStackTest {
 

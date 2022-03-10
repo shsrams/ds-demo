@@ -1,4 +1,4 @@
-package com.test.ds;
+package com.dsdemo.ds;
 
 import java.util.Optional;
 import java.util.stream.Stream;

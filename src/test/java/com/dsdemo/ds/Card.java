@@ -1,4 +1,4 @@
-package com.test.ds;
+package com.dsdemo.ds;
 
 import lombok.Data;
 
