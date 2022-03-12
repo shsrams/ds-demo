@@ -16,6 +16,9 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import com.dsdemo.ds.MyStack;
+
+
+import lombok.Data;
 @DisplayName("Given a stack")
 class MyStackTest {
 
@@ -138,7 +141,17 @@ class MyStackTest {
 		}
 	}
 	
-
-	
+	@Data
+	private static class Card {
+		private String name;
+		private Category type;
+		
+		public enum Category {SPADE, CLUBS, HEARTS, DIAMONDS}
+		
+		public Card(String name, Category type) {
+			this.name = name;
+			this.type = type;
+		}
+	}
 
 }
