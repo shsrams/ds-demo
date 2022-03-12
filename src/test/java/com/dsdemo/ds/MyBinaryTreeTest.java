@@ -41,6 +41,9 @@ class MyBinaryTreeTest {
 			assertNotNull(president);
 			
 			assertEquals("Madison", president);
+			System.out.println("Sorted Order");
+			presidents.inOrderTraverse(System.out::println);
+			presidents.inOrderTraverseDesc(System.out::println);
 		}
 		
 		@DisplayName("test delete root") 

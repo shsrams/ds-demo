@@ -1,5 +1,7 @@
 package com.dsdemo.ds;
 
+import java.util.function.Consumer;
+
 import lombok.Data;
 
 public class MyBinaryTree<T extends Comparable<T>> {
@@ -52,6 +54,31 @@ public class MyBinaryTree<T extends Comparable<T>> {
 		}
 	}
 	
+	public void inOrderTraverse(Consumer<T> consumer) {
+		inOrderTraverse(root, consumer);
+	}
+	
+	private void inOrderTraverse(Node<T> node, Consumer<T> consumer) {
+		if(node != null) {
+			inOrderTraverse(node.getLeft(), consumer);
+			consumer.accept(node.getItem());
+			inOrderTraverse(node.getRight(), consumer);
+		}
+	}
+	public void inOrderTraverseDesc(Consumer<T> consumer) {
+		inOrderTraverseDesc(root, consumer);
+	}
+	
+
+	private void inOrderTraverseDesc(Node<T> node, Consumer<T> consumer) {
+		if(node != null) {
+			inOrderTraverseDesc(node.getRight(), consumer);
+			consumer.accept(node.getItem());
+			inOrderTraverseDesc(node.getLeft(), consumer);
+		}
+		
+	}
+
 	private void unlink(Node<T> nodeToDelete, Node<T> newNode) {
 		if(nodeToDelete.getParent() == null) { //this is the root node
 			newNode.setLeft(nodeToDelete.getLeft());
