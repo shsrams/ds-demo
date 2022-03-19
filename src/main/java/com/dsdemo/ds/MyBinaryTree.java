@@ -1,6 +1,7 @@
 package com.dsdemo.ds;
 
 import java.util.function.Consumer;
+import java.util.stream.IntStream;
 
 import lombok.Data;
 
@@ -55,14 +56,14 @@ public class MyBinaryTree<T extends Comparable<T>> {
 	}
 	
 	public void inOrderTraverse(Consumer<T> consumer) {
-		inOrderTraverse(root, consumer);
+		inOrderTraverseItem(root, consumer);
 	}
 	
-	private void inOrderTraverse(Node<T> node, Consumer<T> consumer) {
+	private void inOrderTraverseItem(Node<T> node, Consumer<T> consumer) {
 		if(node != null) {
-			inOrderTraverse(node.getLeft(), consumer);
+			inOrderTraverseItem(node.getLeft(), consumer);
 			consumer.accept(node.getItem());
-			inOrderTraverse(node.getRight(), consumer);
+			inOrderTraverseItem(node.getRight(), consumer);
 		}
 	}
 	public void inOrderTraverseDesc(Consumer<T> consumer) {
@@ -77,6 +78,23 @@ public class MyBinaryTree<T extends Comparable<T>> {
 			inOrderTraverseDesc(node.getLeft(), consumer);
 		}
 		
+	}
+	
+	public void printTree() {
+		inOrderTraverseDescNode(root, node -> {
+			IntStream.range(0,  node.getHeight())
+				.boxed()
+				.forEach(s -> System.out.print("\t\t"));
+			System.out.println(node.getItem());
+		});
+	}
+	
+	private void inOrderTraverseDescNode(Node<T> node, Consumer<Node<T>> consumer) {
+		if(node != null) {
+			inOrderTraverseDescNode(node.getRight(), consumer);
+			consumer.accept(node);
+			inOrderTraverseDescNode(node.getLeft(), consumer);
+		}
 	}
 
 	private void unlink(Node<T> nodeToDelete, Node<T> newNode) {
@@ -120,6 +138,7 @@ public class MyBinaryTree<T extends Comparable<T>> {
 			if(parent.getLeft() == null) {
 				parent.setLeft(child);
 				child.setParent(parent);
+				child.setHeight(parent.getHeight() + 1);
 				size++;
 				System.out.println("Adding "+child.getItem()+" to the left of "+parent.getItem());
 			} else {
@@ -130,6 +149,7 @@ public class MyBinaryTree<T extends Comparable<T>> {
 			if(parent.getRight() == null) {
 				parent.setRight(child);
 				child.setParent(parent);
+				child.setHeight(parent.getHeight() + 1);
 				size++;
 				System.out.println("Adding "+child.getItem()+" to the right of "+parent.getItem());
 			} else {
@@ -144,15 +164,18 @@ public class MyBinaryTree<T extends Comparable<T>> {
 		
 		public Node(T item) {
 			this.item = item;
+			this.height = 0;
 		}
 		private T item;
 		private Node<T> parent;
 		private Node<T> left;
 		private Node<T> right;
+		private int height;
 	}
 
 
 	public int size() {
 		return size;
 	}
+
 }
