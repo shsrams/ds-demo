@@ -10,10 +10,10 @@ class GridTravelerTest {
 
 	@Test
 	void test() {
-		assertEquals(1, gridTraveler.findStepCount(1, 1));//1
-		assertEquals(2, gridTraveler.findStepCount(2, 2));//2
-		assertEquals(3, gridTraveler.findStepCount(2, 3));//3
-		assertEquals(2333606220l, gridTraveler.findStepCount(18, 18));
+		assertEquals(1, gridTraveler.findNumberOfPossibleWays(1, 1));//1
+		assertEquals(2, gridTraveler.findNumberOfPossibleWays(2, 2));//2
+		assertEquals(3, gridTraveler.findNumberOfPossibleWays(2, 3));//3
+		assertEquals(2333606220l, gridTraveler.findNumberOfPossibleWays(18, 18));
 	}
 
 }
