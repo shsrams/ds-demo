@@ -73,6 +73,8 @@ class MyLinkedListTest {
 			assertEquals(boxCar, train.getFirst().getData());
 			assertEquals(refrigerated, train.getLast().getData());
 			
+			train.print();
+			
 		}
 		
 		@DisplayName("Test remove after adding more elements")
@@ -173,6 +175,61 @@ class MyLinkedListTest {
 					
 			assertEquals(boxCar, train.getFirst().getData());
 			assertEquals(refrigerated, train.getLast().getData());
+		}
+		
+		@DisplayName("Test reversing")
+		@Test
+		void testReverse() {
+			train.add(boxCar);
+			train.add(flatBed);
+			train.add(refrigerated);
+			
+			assertEquals(3, train.getSize());
+			train.print();
+			
+			train.reverse();
+			System.out.println("Post reversal...");
+			train.print();
+					
+			assertEquals(refrigerated, train.getFirst().getData());
+			assertEquals(boxCar, train.getLast().getData());
+		}
+		
+		@DisplayName("Test reversing recursively")
+		@Test
+		void testRecursiveReverse() {
+			train.add(boxCar);
+			train.add(flatBed);
+			train.add(refrigerated);
+			
+			assertEquals(3, train.getSize());
+			train.print();
+			
+			train.recursiveReverse();
+			System.out.println("Post reversal...");
+			train.print();
+					
+			assertEquals(refrigerated, train.getFirst().getData());
+			assertEquals(boxCar, train.getLast().getData());
+		}
+		
+		@DisplayName("Test reverse n nodes")
+		@Test
+		void testRecursiveReverseNNodes() {
+			train.add(boxCar);
+			train.add(flatBed);
+			train.add(refrigerated);
+			train.add(container);
+			
+			assertEquals(4, train.getSize());
+			train.print();
+			
+			train.recursiveReverseNNodes(3);
+			System.out.println("Post reversal...");
+			train.print();
+			assertEquals(refrigerated, train.getFirst().getData());
+			assertEquals(container, train.getLast().getData());
+			
 		}
 	}
 	
